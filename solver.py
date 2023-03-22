@@ -38,7 +38,7 @@ from pip._vendor.progress import counter
 
 p = 907  # 59
 # real = 2 ** f
-sf = 723  # 50
+sf = 385  # 50
 # n = real // p
 # pn = p * n
 print(p, sf)
@@ -187,13 +187,17 @@ cur = ans[0]
 delta = ans[1] - ans[0]
 print("Variants:")
 
-for i in range(10000):
+for i in range(10000000):
     cur_bin = str(bin(cur))[2:]
     cur_bin = '0' * (8 - (len(cur_bin) % 8)) + cur_bin
-    print(cur, end='   ')
+    word = ''
+    # print(cur, end='   ')
     for j in range(0, len(cur_bin), 8):
         symbol = cur_bin[j: j+8]
         # print(symbol)
-        print(chr(int(symbol, 2)), end='')
-    print()
+        # print(chr(int(symbol, 2)), end='')
+        word += chr(int(symbol, 2))
+    # print()
+    if word[:3] == 'nto':
+        print(cur, word)
     cur += delta
