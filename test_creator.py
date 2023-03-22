@@ -1,10 +1,11 @@
 f = 1853124397
-p = 907
+p = 5407752017
 real = 2 ** f
 sf = real % p
 n = real // p
 pn = p * n
 print(f, p, sf)
+print(pow(2, f, p))
 
 word = "nto-"
 oup = ''
