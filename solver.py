@@ -15,6 +15,7 @@
 #    101011000101
 # n * p + c = X
 
+import time
 from math import log
 
 
@@ -35,10 +36,11 @@ from math import log
 
 # f = 13
 from pip._vendor.progress import counter
-
-p = 907  # 59
+sta = time.time()
+print("start", time.time())
+p = 5407752017  # 59
 # real = 2 ** f
-sf = 385  # 50
+sf = 4288798261  # 50
 # n = real // p
 # pn = p * n
 print(p, sf)
@@ -93,28 +95,31 @@ ansewer = ''
 counter = 0
 ans = []
 while True:
+    if i % 200000 == 0:
+        print(i)
     if not(i < len(buffer) - 1 or buffer[i] != 1):
-        print("OK", *buffer, ansewer)
+        # print("OK", *buffer, ansewer)
 
         counter += 1
-        maybe = 0
-        b = 1
-        step = 2
-        for i in buffer:
-            if i == 1:
-                maybe += b
-            b *= 2
+            # maybe = 0
+            # b = 1
+            # step = 2
+            # for i in buffer:
+            #     if i == 1:
+            #         maybe += b
+            #     b *= 2
+
         # print(maybe, str(bin(maybe)))
         # print(sf_bin)
 
-        real_found = maybe + sf
+            # real_found = maybe + sf
         # print(real_found, i2b(real_found))
-        flag_found = log(real_found, 2)
-        print(flag_found)
-        ans.append(int(flag_found))
+        flag_found = len(buffer)
+        print("OK", flag_found, len(buffer))
+        ans.append(int(flag_found + 0.1))
 
-        if counter > 3:
-            if ans[2] - ans[1] == ans[1] - ans[0] == ans[3] - ans[2]:
+        if counter > 2:
+            if ans[2] - ans[1] == ans[1] - ans[0]: #  == ans[3] - ans[2]:
                 print("Validated delta", ans[1] - ans[0])
                 print("Seed", ans[0])
             else:
@@ -187,7 +192,7 @@ cur = ans[0]
 delta = ans[1] - ans[0]
 print("Variants:")
 
-for i in range(10000000):
+for i in range(1000000):
     cur_bin = str(bin(cur))[2:]
     cur_bin = '0' * (8 - (len(cur_bin) % 8)) + cur_bin
     word = ''
@@ -199,5 +204,7 @@ for i in range(10000000):
         word += chr(int(symbol, 2))
     # print()
     if word[:3] == 'nto':
+        print("When found", time.time())
+        print("Total", time.time() - sta)
         print(cur, word)
     cur += delta
