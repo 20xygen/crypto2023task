@@ -1,12 +1,12 @@
-f = 7895418
+f = 1853124397
 p = 907
 real = 2 ** f
 sf = real % p
 n = real // p
 pn = p * n
-print(f, p, sf, n, pn)
+print(f, p, sf)
 
-word = "xyz"
+word = "nto-"
 oup = ''
 for i in range(len(word)):
     c = ord(word[i])
